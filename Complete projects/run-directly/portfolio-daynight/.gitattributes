@@ -1,0 +1,6 @@
+# Never rewrite these (binary) on commit/checkout — autocrlf would corrupt them.
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary

@@ -111,8 +111,8 @@
       I build <span class="rotator" id="word-rotator" aria-hidden="true"><span class="rotator-word">websites</span></span>
     </p>
     <p class="hero-sub split-words" id="hero-tagline">
-      Full-stack JavaScript developer working across React, Node.js, and Firebase —
-      turning ideas into working products, not just prototypes.
+      Full-Stack JavaScript Developer with hands-on experience building responsive web and
+      mobile applications using the MERN stack.
     </p>
     <p class="availability-badge reveal" id="availability-badge">
       <span class="pulse-dot" aria-hidden="true"></span>
@@ -120,7 +120,7 @@
     </p>
     <div class="hero-cta stagger">
       <a href="#work" class="btn btn-primary reveal">See my work</a>
-      <a href="#" class="btn btn-secondary reveal" id="cv-download-btn" aria-disabled="true">Download CV</a>
+      <a href="assets/Hussain_Raza_CV.pdf" class="btn btn-secondary reveal" id="cv-download-btn" download="Hussain_Raza_CV.pdf">Download CV</a>
     </div>
   </div>
 
@@ -252,6 +252,15 @@
     </div>
     <div class="timeline-item reveal">
       <div class="timeline-dot" aria-hidden="true"></div>
+      <div class="timeline-period">April 2025 — August 2025</div>
+      <div class="timeline-card">
+        <h3>Computer Operator</h3>
+        <p class="timeline-org">GGT CAD · MG Apparel · Multan</p>
+        <p>Managed computer-based design files and data records, maintained accurate technical records and supported day-to-day IT operations.</p>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" aria-hidden="true"></div>
       <div class="timeline-period">June 2023 — September 2023</div>
       <div class="timeline-card">
         <h3>App Developer Intern</h3>
@@ -288,13 +297,14 @@
   <div class="cv-panel reveal">
     <div class="cv-panel-icon" aria-hidden="true">CV</div>
     <div class="cv-panel-text">
-      <p class="cv-panel-status" id="cv-section-status">CV not available yet — please check back soon.</p>
+      <p class="cv-panel-status" id="cv-section-status">My resume is ready — download the PDF or open it in a new tab.</p>
       <p class="cv-panel-desc">Download the latest PDF copy of my resume, or open it in a new tab to preview before saving.</p>
-      <p class="hint" id="cv-section-file" hidden></p>
+      <p class="hint" id="cv-section-file">File: Hussain_Raza_CV.pdf</p>
     </div>
     <div class="cv-panel-actions">
-      <a class="btn btn-primary" id="cv-section-download" href="#" aria-disabled="true">Download CV</a>
-      <a class="btn btn-secondary" id="cv-section-preview" href="#" target="_blank" rel="noopener" aria-disabled="true">View CV</a>
+      <a class="btn btn-primary" id="cv-section-download" href="assets/Hussain_Raza_CV.pdf" download="Hussain_Raza_CV.pdf">Download CV</a>
+      <a class="btn btn-secondary" id="cv-section-preview" href="assets/Hussain_Raza_CV.pdf" target="_blank" rel="noopener">View CV</a>
+      <a class="cv-mirror-link" data-cv-mirror href="https://collection.cloudinary.com/iseuqu9s/541a499b3c68104ce8de47cb12ec0437" target="_blank" rel="noopener">Also hosted online →</a>
     </div>
   </div>
 </section>
@@ -418,12 +428,12 @@
       <div class="tab-panel" data-panel="files">
         <label for="cv-upload">Upload CV (PDF)<input type="file" id="cv-upload" accept="application/pdf,.pdf" /></label>
         <p class="hint" id="cv-error" hidden></p>
-        <p class="hint" id="cv-current-hint">No CV uploaded yet.</p>
+        <p class="hint" id="cv-current-hint">Current file: Hussain_Raza_CV.pdf</p>
         <div class="cv-actions" id="cv-actions" hidden>
           <a class="btn btn-outline" id="cv-preview-link" href="#" target="_blank" rel="noopener">Preview CV</a>
-          <button class="remove-item-btn" id="cv-delete-btn" type="button">Delete CV</button>
+          <button class="remove-item-btn" id="cv-delete-btn" type="button">Delete upload</button>
         </div>
-        <p class="hint">PDF only · max 2 MB · visitors can download from the Resume section once uploaded.</p>
+        <p class="hint">Visitors always get the hosted copy at <code>assets/Hussain_Raza_CV.pdf</code> — uploading here only overrides it in this browser until you export site-data.js.</p>
         <hr style="border:none;border-top:1px solid var(--border,#2a2438);margin:16px 0;" />
         <p class="hint">Your edits save in this browser and survive refresh. To make them visible to every visitor, export and replace <code>site-data.js</code> in the project folder, then redeploy.</p>
         <button class="btn btn-primary" id="export-site-btn" type="button">Export site-data.js (publish)</button>

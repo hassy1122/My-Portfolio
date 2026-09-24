@@ -1342,8 +1342,7 @@ body.edit-mode .add-btn { display: inline-block !important; margin-top: var(--sp
 
 .contact-link:hover::after { transform: scaleX(1); }
 
-/* ========================= FOOTER / SCROLL TOP ========================= */
-/* Public resume / CV panel */
+/* ========================= PUBLIC RESUME / CV PANEL ========================= */
 .cv-panel {
   display: flex;
   align-items: center;
@@ -1406,6 +1405,23 @@ body.edit-mode .add-btn { display: inline-block !important; margin-top: var(--sp
 }
 
 .cv-panel-actions .btn { white-space: nowrap; }
+
+.cv-mirror-link {
+  align-self: center;
+  font-size: 13px;
+  color: var(--text-dim);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(var(--accent-rgb), 0.55);
+  padding-bottom: 2px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.cv-mirror-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.cv-mirror-link[hidden] { display: none; }
 
 .hint.cv-error,
 #cv-error:not([hidden]) {

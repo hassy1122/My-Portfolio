@@ -16,7 +16,7 @@
       fiverr: "https://www.fiverr.com/hussainraza223/",
       upwork: "https://www.upwork.com/freelancers/~014ad670d9b6e6dd80",
       education: "BS Computer Science — KFUEIT (2020–2024)",
-      languages: "English (IELTS 6.5), Urdu",
+      languages: "English, Urdu",
       availability: "Open to freelance & remote opportunities",
       rate: "Competitive rates — discussed per project",
       photo: "images/myimg.jpg",
@@ -104,9 +104,14 @@
       { name: "JavaScript Full Stack Capstone Project", issuer: "IBM on Coursera (Sep 16, 2026)", link: "https://coursera.org/verify/GNXSGXATAQLX", image: "images/certificates/C11.png" },
       { name: "Software Developer Career Guide and Interview Preparation", issuer: "IBM on Coursera (Sep 11, 2026)", link: "https://coursera.org/verify/D5DMJQSVTA9D", image: "images/certificates/C12.png" },
       { name: "Full Stack Web Development Certification", issuer: "ICR IT Centre, Rahim Yar Khan (Sep 26, 2023)", link: "images/certificates/icr-fullstack.jpg", image: "images/certificates/icr-fullstack.jpg" },
+      { name: "Full-Stack JavaScript Development (NAVTTC)", issuer: "ExD Academy · NAVTTC, Lahore (Sep 2026)", link: "", image: "" },
     ],
+    /* Permanent CV: hosted copy inside the repo (one click, never expires).
+       cvMirror = owner's Cloudinary collection link (online copy). */
+    cvUrl: "assets/Hussain_Raza_CV.pdf",
+    cvMirror: "https://collection.cloudinary.com/iseuqu9s/541a499b3c68104ce8de47cb12ec0437",
     cvDataUrl: null,
-    cvFileName: null,
+    cvFileName: "Hussain_Raza_CV.pdf",
     comments: [],
   };
 
@@ -187,6 +192,11 @@
     /* empty photo falls back to default professional photo */
     if (merged.profile && !merged.profile.photo) {
       merged.profile.photo = DEFAULT_DATA.profile.photo;
+    }
+    /* Languages: drop IELTS band detail (owner preference), even if it comes
+       from saved browser data or an exported site-data.js snapshot. */
+    if (merged.profile && /IELTS|band score/i.test(String(merged.profile.languages || ""))) {
+      merged.profile.languages = "English, Urdu";
     }
     return merged;
   }
@@ -462,6 +472,17 @@
     }
   }
 
+  /* CV source: owner's uploaded PDF wins, otherwise the permanent hosted copy. */
+  function cvSource() {
+    if (state.cvDataUrl) {
+      return { url: state.cvDataUrl, name: state.cvFileName || "CV.pdf" };
+    }
+    if (state.cvUrl) {
+      return { url: state.cvUrl, name: state.cvFileName || "Hussain_Raza_CV.pdf" };
+    }
+    return null;
+  }
+
   function renderCvHint() {
     var hint = document.getElementById("cv-current-hint");
     var dlBtn = document.getElementById("cv-download-btn");
@@ -471,19 +492,30 @@
     var secFile = document.getElementById("cv-section-file");
     var secDl = document.getElementById("cv-section-download");
     var secPrev = document.getElementById("cv-section-preview");
-    var has = !!state.cvDataUrl;
-    var fileName = state.cvFileName || "CV.pdf";
+    var mirrorLinks = document.querySelectorAll("[data-cv-mirror]");
+    var src = cvSource();
+    var has = !!src;
+    var fileName = (src && src.name) || "CV.pdf";
 
-    if (hint) hint.textContent = has ? "Current file: " + fileName : "No CV uploaded yet.";
-    if (actions) actions.hidden = !has;
+    if (hint) hint.textContent = has ? "Current file: " + fileName : "No CV available yet.";
+    if (actions) actions.hidden = !state.cvDataUrl;
+
+    mirrorLinks.forEach(function (a) {
+      if (state.cvMirror) {
+        a.href = state.cvMirror;
+        a.hidden = false;
+      } else {
+        a.hidden = true;
+      }
+    });
 
     if (has) {
       if (preview) {
-        preview.href = state.cvDataUrl;
+        preview.href = src.url;
         preview.setAttribute("download", fileName);
       }
       if (dlBtn) {
-        dlBtn.href = state.cvDataUrl;
+        dlBtn.href = src.url;
         dlBtn.setAttribute("download", fileName);
         dlBtn.title = "Download " + fileName;
         setBtnDisabled(dlBtn, false);
@@ -494,12 +526,12 @@
         secFile.textContent = "File: " + fileName;
       }
       if (secDl) {
-        secDl.href = state.cvDataUrl;
+        secDl.href = src.url;
         secDl.setAttribute("download", fileName);
         setBtnDisabled(secDl, false);
       }
       if (secPrev) {
-        secPrev.href = state.cvDataUrl;
+        secPrev.href = src.url;
         setBtnDisabled(secPrev, false);
       }
     } else {
@@ -522,7 +554,7 @@
   if (cvDeleteBtn) {
     cvDeleteBtn.addEventListener("click", function () {
       if (!state.cvDataUrl) return;
-      if (!window.confirm("Delete the uploaded CV? You can upload a new one at any time.")) return;
+      if (!window.confirm("Remove the PDF you uploaded here? Visitors keep the hosted copy.")) return;
       state.cvDataUrl = null;
       state.cvFileName = null;
       saveData();
