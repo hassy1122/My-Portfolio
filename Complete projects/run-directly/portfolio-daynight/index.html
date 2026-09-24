@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Muhammad Hussain Raza — Full-Stack JavaScript developer portfolio with day & night themes and an interactive 3D character." />
+<meta name="theme-color" content="#0a0713" id="meta-theme-color" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%239b5cff'/%3E%3Cstop offset='1' stop-color='%23e94ecf'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%230a0713'/%3E%3Ctext x='32' y='42' font-family='system-ui,sans-serif' font-size='30' font-weight='700' fill='url(%23g)' text-anchor='middle'%3EHR%3C/text%3E%3C/svg%3E" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Muhammad Hussain Raza — Full-Stack JavaScript Developer" />
+<meta property="og:description" content="Portfolio of Muhammad Hussain Raza — full-stack JavaScript developer (React, Node.js, Express, MongoDB). Day & night themes with an interactive 3D character." />
+<meta property="og:site_name" content="Muhammad Hussain Raza Portfolio" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Muhammad Hussain Raza — Full-Stack JavaScript Developer" />
+<meta name="twitter:description" content="Full-stack JavaScript developer portfolio — React, Node.js, Express, MongoDB." />
+<link rel="canonical" href="https://hassy1122.github.io/" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Muhammad Hussain Raza",
+  "jobTitle": "Full-Stack JavaScript Developer",
+  "email": "mailto:hr.hussainraza112@gmail.com",
+  "telephone": "+92-304-2936540",
+  "url": "https://hassy1122.github.io/",
+  "sameAs": [
+    "https://github.com/hassy1122",
+    "https://www.linkedin.com/in/hr-hassy/",
+    "https://www.fiverr.com/hussainraza223/",
+    "https://www.upwork.com/freelancers/~014ad670d9b6e6dd80"
+  ],
+  "knowsAbout": ["JavaScript", "React", "Node.js", "Express.js", "MongoDB", "REST APIs"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Lahore", "addressCountry": "PK" }
+}
+</script>
+<title>Muhammad Hussain Raza — Portfolio</title>
+<script>
+  /* Apply theme before first paint to avoid a flash of the wrong palette. */
+  (function () {
+    try {
+      var saved = localStorage.getItem("portfolio-theme");
+      var prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+      var theme = saved === "light" || saved === "dark" ? saved : (prefersLight ? "light" : "dark");
+      document.documentElement.setAttribute("data-theme", theme);
+    } catch (e) {}
+    document.documentElement.classList.add("js-ready");
+    /* Failsafe: never let the loader or hidden reveal states block the page. */
+    setTimeout(function () {
+      var l = document.getElementById("loading-screen");
+      if (l) l.classList.add("hidden");
+      document.querySelectorAll(".split-words, .split-chars, .reveal, .reveal-lines, .fade-in, .fade-in-left, .fade-in-right, .scroll-reveal")
+        .forEach(function (el) { el.classList.add("is-visible"); });
+    }, 2800);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"><span></span></div>
+
+<div class="loading-screen" id="loading-screen" aria-hidden="true">
+  <div class="loading-spinner"></div>
+  <div class="loading-text">LOADING PORTFOLIO...</div>
+</div>
+
+<button class="scroll-top-btn" id="scroll-top-btn" type="button" aria-label="Scroll to top">&#8593;</button>
+
+<div class="grid-overlay" aria-hidden="true"></div>
+
+<nav class="navbar" aria-label="Primary">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">&lt;/&gt;</span>
+      <span class="brand-name" id="nav-name">Hussain Raza</span>
+    </a>
+    <div class="nav-actions">
+      <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-links" id="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#experience">Experience</a>
+      <a href="#work">Projects</a>
+      <a href="#certs">Certifications</a>
+      <a href="#cv">Resume</a>
+      <a href="#comments">Comments</a>
+      <a href="#contact">Contact</a>
+      <button id="edit-toggle-btn" class="edit-toggle" type="button">Edit</button>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to day theme" aria-pressed="false" title="Switch theme">
+        <span class="theme-icon" aria-hidden="true">☀️</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="particle-container" id="particle-container" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <p class="eyebrow"><span class="split-chars">FULL-STACK</span><span class="eyebrow-gap" aria-hidden="true"></span><span class="split-chars">DEVELOPER</span></p>
+    <h1 class="hero-title split-words">
+      Hi, I'm <span class="accent" id="hero-name">Hussain</span>.<br/>
+      I build things end to end.
+    </h1>
+    <p class="hero-rotator reveal" aria-label="I build websites, apps, APIs and systems">
+      I build <span class="rotator" id="word-rotator" aria-hidden="true"><span class="rotator-word">websites</span></span>
+    </p>
+    <p class="hero-sub split-words" id="hero-tagline">
+      Full-stack JavaScript developer working across React, Node.js, and Firebase —
+      turning ideas into working products, not just prototypes.
+    </p>
+    <p class="availability-badge reveal" id="availability-badge">
+      <span class="pulse-dot" aria-hidden="true"></span>
+      <span id="availability-text">Open to freelance &amp; remote opportunities</span>
+    </p>
+    <div class="hero-cta stagger">
+      <a href="#work" class="btn btn-primary reveal">See my work</a>
+      <a href="#" class="btn btn-secondary reveal" id="cv-download-btn" aria-disabled="true">Download CV</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="character-stage" id="character-stage" data-mode="work" data-emotion="expressionless">
+      <div class="stage-ring" aria-hidden="true"></div>
+      <div class="stage-canvas" id="character-canvas" aria-hidden="true"></div>
+      <div class="stage-fallback" id="stage-fallback" hidden>
+        <p>Interactive 3D companion unavailable on this device.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="section scroll-reveal" id="about" aria-labelledby="aboutTitle">
+  <h2 class="section-title split-words" id="aboutTitle">About me</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="profile-avatar reveal" id="profile-avatar">
+        <span id="profile-initials">HR</span>
+        <img id="profile-photo" alt="Profile photo" hidden />
+      </div>
+      <p class="split-words" id="about-bio">
+        I'm a BS Computer Science graduate with hands-on experience building full-stack
+        web and mobile products — from database design to deployed UI. I care about
+        understanding how every layer of an application fits together, not just
+        shipping isolated features.
+      </p>
+      <div class="skills-list stagger" id="skills-list">
+        <span class="skill-pill reveal">JavaScript</span>
+        <span class="skill-pill reveal">React</span>
+        <span class="skill-pill reveal">Node.js</span>
+        <span class="skill-pill reveal">Express.js</span>
+        <span class="skill-pill reveal">MongoDB</span>
+        <span class="skill-pill reveal">MySQL</span>
+        <span class="skill-pill reveal">REST APIs</span>
+        <span class="skill-pill reveal">Git</span>
+      </div>
+    </div>
+    <div class="about-facts stagger">
+      <div class="fact-row reveal">
+        <span class="fact-label">Name</span>
+        <span class="fact-value" id="fact-name">Muhammad Hussain Raza</span>
+      </div>
+      <div class="fact-row reveal">
+        <span class="fact-label">Date of birth</span>
+        <span class="fact-value" id="fact-dob">—</span>
+      </div>
+      <div class="fact-row reveal">
+        <span class="fact-label">Location</span>
+        <span class="fact-value" id="fact-location">Lahore, Pakistan</span>
+      </div>
+      <div class="fact-row reveal">
+        <span class="fact-label">Email</span>
+        <span class="fact-value" id="fact-email">hr.hussainraza112@gmail.com</span>
+      </div>
+      <div class="fact-row reveal">
+        <span class="fact-label">Phone</span>
+        <span class="fact-value" id="fact-phone">+92 304 2936540</span>
+      </div>
+      <div class="fact-row reveal">
+        <span class="fact-label">Education</span>
+        <span class="fact-value" id="fact-education">BS Computer Science — KFUEIT</span>
+      </div>
+      <div class="fact-row reveal">
+        <span class="fact-label">Languages</span>
+        <span class="fact-value" id="fact-languages">—</span>
+      </div>
+      <div class="fact-row reveal">
+        <span class="fact-label">Availability</span>
+        <span class="fact-value" id="fact-availability">—</span>
+      </div>
+      <div class="fact-row reveal">
+        <span class="fact-label">Rates</span>
+        <span class="fact-value" id="fact-rate">—</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section scroll-reveal" id="services" aria-labelledby="servicesTitle">
+  <h2 class="section-title split-words" id="servicesTitle">Services</h2>
+  <p class="section-lead reveal">Full-stack JavaScript services teams and founders hire for — from first idea to production.</p>
+  <div class="services-grid stagger">
+    <article class="service-card reveal">
+      <div class="service-icon" aria-hidden="true">{"{ }"}</div>
+      <h3>Full-stack web apps</h3>
+      <p>End-to-end React + Node.js products: UI, auth, business logic and deployment-ready architecture.</p>
+    </article>
+    <article class="service-card reveal">
+      <div class="service-icon" aria-hidden="true">API</div>
+      <h3>REST APIs &amp; backends</h3>
+      <p>Express.js APIs, MongoDB/SQL modeling, integrations, validation and clean error handling.</p>
+    </article>
+    <article class="service-card reveal">
+      <div class="service-icon" aria-hidden="true">UI</div>
+      <h3>Frontend engineering</h3>
+      <p>Responsive React interfaces, design systems, performance polish and accessibility fixes.</p>
+    </article>
+    <article class="service-card reveal">
+      <div class="service-icon" aria-hidden="true">⚙</div>
+      <h3>Maintenance &amp; fixes</h3>
+      <p>Bug fixes, refactors, feature additions and ongoing support for existing JavaScript codebases.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section scroll-reveal" id="experience">
+  <h2 class="section-title split-words">Experience &amp; education</h2>
+  <div class="timeline stagger">
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" aria-hidden="true"></div>
+      <div class="timeline-period">June 2026 — Sep 2026</div>
+      <div class="timeline-card">
+        <h3>IT Trainee (Full-Stack Developer)</h3>
+        <p class="timeline-org">ExD Academy · in collaboration with NAVTTC · Lahore</p>
+        <p>Full-stack JavaScript development training with React, Node.js, Express.js and MongoDB — building real-world projects with team collaboration and modern development practices.</p>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" aria-hidden="true"></div>
+      <div class="timeline-period">November 2025 — January 2026</div>
+      <div class="timeline-card">
+        <h3>Market Research Analyst</h3>
+        <p class="timeline-org">Silverlight Research Group · Remote (UK-based)</p>
+        <p>Conducted market research and data analysis, prepared research reports and worked remotely with international teams.</p>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" aria-hidden="true"></div>
+      <div class="timeline-period">June 2023 — September 2023</div>
+      <div class="timeline-card">
+        <h3>App Developer Intern</h3>
+        <p class="timeline-org">ICR IT Centre · Rahim Yar Khan</p>
+        <p>Developed responsive web and mobile interfaces with HTML, CSS, JavaScript and React, integrated RESTful APIs and worked with databases on client projects.</p>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" aria-hidden="true"></div>
+      <div class="timeline-period">2020 — 2024</div>
+      <div class="timeline-card">
+        <h3>BS Computer Science</h3>
+        <p class="timeline-org">KFUEIT · Rahim Yar Khan</p>
+        <p>Foundation in software engineering, web development, databases and programming — plus a final-year project delivered in a team setting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section scroll-reveal" id="work">
+  <h2 class="section-title split-words">Projects</h2>
+  <div class="project-grid stagger" id="project-grid"></div>
+  <button class="btn btn-outline add-btn" id="add-project-btn" type="button" style="display:none;">+ Add project</button>
+</section>
+
+<section class="section scroll-reveal" id="certs">
+  <h2 class="section-title split-words">Certifications &amp; Documents</h2>
+  <div class="cert-grid stagger" id="cert-grid"></div>
+  <button class="btn btn-outline add-btn" id="add-cert-btn" type="button" style="display:none;">+ Add certificate</button>
+</section>
+
+<section class="section scroll-reveal" id="cv">
+  <h2 class="section-title split-words">Curriculum Vitae</h2>
+  <div class="cv-panel reveal">
+    <div class="cv-panel-icon" aria-hidden="true">CV</div>
+    <div class="cv-panel-text">
+      <p class="cv-panel-status" id="cv-section-status">CV not available yet — please check back soon.</p>
+      <p class="cv-panel-desc">Download the latest PDF copy of my resume, or open it in a new tab to preview before saving.</p>
+      <p class="hint" id="cv-section-file" hidden></p>
+    </div>
+    <div class="cv-panel-actions">
+      <a class="btn btn-primary" id="cv-section-download" href="#" aria-disabled="true">Download CV</a>
+      <a class="btn btn-secondary" id="cv-section-preview" href="#" target="_blank" rel="noopener" aria-disabled="true">View CV</a>
+    </div>
+  </div>
+</section>
+
+<section class="section scroll-reveal" id="comments">
+  <h2 class="section-title split-words">Kind words</h2>
+  <div class="comments-grid stagger" id="comments-list"></div>
+  <form class="comment-form reveal" id="comment-form" novalidate>
+    <h3>Leave a comment</h3>
+    <div class="comment-form-row">
+      <input type="text" id="comment-name" placeholder="Your name" maxlength="60" autocomplete="name" />
+      <input type="text" id="comment-role" placeholder="Role / company (optional)" maxlength="80" />
+    </div>
+    <textarea id="comment-text" placeholder="Write something nice…" rows="3" maxlength="600"></textarea>
+    <p class="hint comment-error" id="comment-error" hidden>Please add your name and a message.</p>
+    <button class="btn btn-primary" type="submit">Post comment</button>
+  </form>
+</section>
+
+<section class="section scroll-reveal" id="contact">
+  <h2 class="section-title split-words">Let's work together</h2>
+  <form class="contact-form reveal" id="contact-form" novalidate>
+    <h3>Start a project</h3>
+    <div class="contact-form-row">
+      <label for="cf-name">Name<input type="text" id="cf-name" name="name" placeholder="Your name" maxlength="80" autocomplete="name" required /></label>
+      <label for="cf-email">Email<input type="email" id="cf-email" name="email" placeholder="you@example.com" maxlength="120" autocomplete="email" required /></label>
+    </div>
+    <label for="cf-project">Project<input type="text" id="cf-project" name="project" placeholder="e.g. Website, mobile app, API…" maxlength="120" required /></label>
+    <label for="cf-msg">Message<textarea id="cf-msg" name="message" placeholder="Tell me a bit about the project, timeline and budget…" rows="4" maxlength="2000" required></textarea></label>
+    <p class="hint comment-error" id="cf-error" hidden>Please fill in name, a valid email, project and message.</p>
+    <p class="hint cf-success" id="cf-success" hidden>Opening your email app with the message ready to send…</p>
+    <button class="btn btn-primary" type="submit">Send message</button>
+  </form>
+  <div class="contact-row stagger">
+    <a class="contact-link reveal" id="contact-email-link" data-tip="hr.hussainraza112@gmail.com" href="https://mail.google.com/mail/u/0/?view=cm&amp;fs=1&amp;to=hr.hussainraza112@gmail.com" target="_blank" rel="noopener">Email</a>
+    <a class="contact-link reveal" id="contact-linkedin-link" href="https://www.linkedin.com/in/hr-hassy/" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="contact-link reveal" id="contact-github-link" href="https://github.com/hassy1122" target="_blank" rel="noopener">GitHub</a>
+    <a class="contact-link reveal" id="contact-fiverr-link" href="https://www.fiverr.com/hussainraza223/" target="_blank" rel="noopener">Fiverr</a>
+    <a class="contact-link reveal" id="contact-upwork-link" href="https://www.upwork.com/freelancers/~014ad670d9b6e6dd80" target="_blank" rel="noopener">Upwork</a>
+    <a class="contact-link reveal" id="contact-phone-link" data-tip="+92 304 2936540" href="tel:+923042936540">Mobile</a>
+    <a class="contact-link reveal" id="contact-whatsapp-link" data-tip="+92 304 2936540" href="https://wa.me/923042936540" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <p class="reveal">&copy; <span id="footer-year"></span> <span id="footer-name">Muhammad Hussain Raza</span>. Built with care.</p>
+  <button class="admin-entry" id="admin-entry-btn" type="button" aria-label="Admin sign in" title="Admin sign in">&#128274;</button>
+</footer>
+
+<!-- ADMIN SIGN-IN GATE (owner only; visitors see the viewer panel) -->
+<div class="modal-overlay" id="admin-modal" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
+  <div class="modal admin-modal">
+    <div class="modal-header">
+      <h3 id="adminModalTitle">Admin sign in</h3>
+      <button class="modal-close" id="admin-close-btn" type="button" aria-label="Close sign in">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p class="hint">Owner access only — this opens the admin panel. Visitors only ever see the viewer (public) panel.</p>
+      <label for="admin-username">Username<input type="text" id="admin-username" autocomplete="username" /></label>
+      <label for="admin-password">Password<input type="password" id="admin-password" autocomplete="current-password" /></label>
+      <p class="hint admin-error" id="admin-error" hidden>Incorrect username or password — please try again.</p>
+      <label class="admin-remember"><input type="checkbox" id="admin-remember" /> Keep me signed in on this device</label>
+      <button class="btn btn-primary" id="admin-login-btn" type="button">Sign in</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="modal-overlay" id="edit-modal" role="dialog" aria-modal="true" aria-labelledby="editModalTitle">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="editModalTitle">Admin panel</h3>
+      <div class="modal-header-actions">
+        <button class="admin-signout" id="admin-signout-btn" type="button">Sign out</button>
+        <button class="modal-close" id="modal-close-btn" type="button" aria-label="Close admin panel">&times;</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tabs" role="tablist">
+        <button class="tab-btn active" type="button" data-tab="profile">Profile</button>
+        <button class="tab-btn" type="button" data-tab="projects">Projects</button>
+        <button class="tab-btn" type="button" data-tab="certs">Certificates</button>
+        <button class="tab-btn" type="button" data-tab="files">CV</button>
+      </div>
+
+      <div class="tab-panel active" data-panel="profile">
+        <label for="edit-name">Full name<input type="text" id="edit-name" /></label>
+        <label for="edit-hero-name">Hero first name (short)<input type="text" id="edit-hero-name" /></label>
+        <label for="photo-upload">Profile photo (optional)<input type="file" id="photo-upload" accept="image/*" /></label>
+        <p class="hint" id="photo-current-hint">Default profile photo (images/myimg.jpg) — upload to replace.</p>
+        <button class="remove-item-btn" id="photo-remove-btn" type="button" hidden>Remove photo</button>
+        <label for="edit-dob">Date of birth<input type="date" id="edit-dob" /></label>
+        <label for="edit-location">Location<input type="text" id="edit-location" /></label>
+        <label for="edit-email">Email<input type="email" id="edit-email" /></label>
+        <label for="edit-phone">Phone<input type="text" id="edit-phone" /></label>
+        <label for="edit-linkedin">LinkedIn URL<input type="text" id="edit-linkedin" /></label>
+        <label for="edit-github">GitHub URL<input type="text" id="edit-github" /></label>
+        <label for="edit-fiverr">Fiverr URL<input type="text" id="edit-fiverr" /></label>
+        <label for="edit-upwork">Upwork URL<input type="text" id="edit-upwork" /></label>
+        <label for="edit-education">Education<input type="text" id="edit-education" /></label>
+        <label for="edit-languages">Languages<input type="text" id="edit-languages" /></label>
+        <label for="edit-availability">Availability<input type="text" id="edit-availability" /></label>
+        <label for="edit-rate">Rates note<input type="text" id="edit-rate" /></label>
+        <label for="edit-tagline">Hero tagline<textarea id="edit-tagline" rows="2"></textarea></label>
+        <label for="edit-bio">About bio<textarea id="edit-bio" rows="4"></textarea></label>
+        <label for="edit-skills">Skills (comma separated)<textarea id="edit-skills" rows="2"></textarea></label>
+        <button class="btn btn-primary" id="save-profile-btn" type="button">Save profile</button>
+      </div>
+
+      <div class="tab-panel" data-panel="projects">
+        <div id="edit-projects-list"></div>
+        <button class="btn btn-outline" id="modal-add-project-btn" type="button">+ Add project</button>
+      </div>
+
+      <div class="tab-panel" data-panel="certs">
+        <div id="edit-certs-list"></div>
+        <button class="btn btn-outline" id="modal-add-cert-btn" type="button">+ Add certificate</button>
+      </div>
+
+      <div class="tab-panel" data-panel="files">
+        <label for="cv-upload">Upload CV (PDF)<input type="file" id="cv-upload" accept="application/pdf,.pdf" /></label>
+        <p class="hint" id="cv-error" hidden></p>
+        <p class="hint" id="cv-current-hint">No CV uploaded yet.</p>
+        <div class="cv-actions" id="cv-actions" hidden>
+          <a class="btn btn-outline" id="cv-preview-link" href="#" target="_blank" rel="noopener">Preview CV</a>
+          <button class="remove-item-btn" id="cv-delete-btn" type="button">Delete CV</button>
+        </div>
+        <p class="hint">PDF only · max 2 MB · visitors can download from the Resume section once uploaded.</p>
+        <hr style="border:none;border-top:1px solid var(--border,#2a2438);margin:16px 0;" />
+        <p class="hint">Your edits save in this browser and survive refresh. To make them visible to every visitor, export and replace <code>site-data.js</code> in the project folder, then redeploy.</p>
+        <button class="btn btn-primary" id="export-site-btn" type="button">Export site-data.js (publish)</button>
+        <p class="hint" id="publish-hint" hidden></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/three.min.js"></script>
+<script src="site-data.js"></script>
+<script src="script.js"></script>
+<script src="assets/word-anim.js"></script>
+<script src="assets/character.js"></script>
+</body>
+</html>
