@@ -144,12 +144,62 @@
         <span id="profile-initials">HR</span>
         <img id="profile-photo" alt="Profile photo" hidden />
       </div>
-      <p class="split-words" id="about-bio">
-        I'm a BS Computer Science graduate with hands-on experience building full-stack
-        web and mobile products — from database design to deployed UI. I care about
-        understanding how every layer of an application fits together, not just
-        shipping isolated features.
+      <p class="about-headline reveal" id="about-headline">
+        <span class="about-headline-role">Full-Stack JavaScript Developer</span><span class="about-headline-pipe" aria-hidden="true">|</span>I build fast, scalable web and mobile apps that turn your idea into a product customers actually use.
       </p>
+      <div class="about-bio split-words" id="about-bio">
+        <p>
+          Great software isn&rsquo;t just good-looking screens. It&rsquo;s a reliable system underneath
+          that grows with your business. I&rsquo;m a Full-Stack JavaScript Developer specializing in the
+          MERN stack (MongoDB, Express, React, Node.js), and I take products from first concept to live
+          deployment, owning every layer: database design, API logic, and a polished, responsive interface.
+        </p>
+        <p>
+          Working with one developer who understands the whole system means fewer handoffs, fewer
+          misunderstandings, faster delivery, and a product that holds together as it scales.
+        </p>
+      </div>
+
+      <div class="about-blocks stagger">
+        <div class="about-block reveal">
+          <h3 class="about-sub">Is this you?</h3>
+          <ul class="about-list about-list--outline">
+            <li>You have an idea and need it built properly, not just quickly.</li>
+            <li>Your current website or app is slow, buggy, or hard to update.</li>
+            <li>You need a dashboard, portal, or internal tool to run your operations.</li>
+            <li>You&rsquo;re a startup that needs an MVP in front of users, fast.</li>
+            <li>You want a developer who communicates clearly and doesn&rsquo;t disappear mid-project.</li>
+          </ul>
+        </div>
+
+        <div class="about-block reveal">
+          <h3 class="about-sub">What I deliver</h3>
+          <ul class="about-list">
+            <li><strong>Custom web applications:</strong> e-commerce stores, booking systems, SaaS platforms, admin dashboards, and client portals.</li>
+            <li><strong>Mobile-ready experiences:</strong> responsive design that works smoothly on every screen size and device.</li>
+            <li><strong>Secure, scalable back-ends:</strong> clean APIs, structured databases, authentication, and role-based access.</li>
+            <li><strong>End-to-end ownership:</strong> planning, development, testing, and deployment, so you receive a finished, working product.</li>
+            <li><strong>Upgrades and rescue work:</strong> new features, performance fixes, and cleanup of existing codebases.</li>
+          </ul>
+        </div>
+
+        <div class="about-block reveal">
+          <h3 class="about-sub">How I work</h3>
+          <ul class="about-list about-list--outline">
+            <li>Clear communication in plain language, with no unexplained jargon.</li>
+            <li>Clean, maintainable code that other developers can pick up easily.</li>
+            <li>Regular progress updates so you always know where your project stands.</li>
+            <li>Focus on your business goals, not just the technical checklist.</li>
+          </ul>
+        </div>
+
+        <p class="about-cta reveal">
+          Let&rsquo;s build something that works.
+          <a href="#contact">Send me a short description of your project</a>
+          and I&rsquo;ll reply with a practical plan, timeline, and next steps.
+        </p>
+      </div>
+
       <div class="skills-list stagger" id="skills-list">
         <span class="skill-pill reveal">JavaScript</span>
         <span class="skill-pill reveal">React</span>
@@ -411,7 +461,7 @@
         <label for="edit-availability">Availability<input type="text" id="edit-availability" /></label>
         <label for="edit-rate">Rates note<input type="text" id="edit-rate" /></label>
         <label for="edit-tagline">Hero tagline<textarea id="edit-tagline" rows="2"></textarea></label>
-        <label for="edit-bio">About bio<textarea id="edit-bio" rows="4"></textarea></label>
+        <label for="edit-bio">About bio <span class="hint">(blank line = new paragraph)</span><textarea id="edit-bio" rows="7"></textarea></label>
         <label for="edit-skills">Skills (comma separated)<textarea id="edit-skills" rows="2"></textarea></label>
         <button class="btn btn-primary" id="save-profile-btn" type="button">Save profile</button>
       </div>

@@ -735,6 +735,103 @@ html.js-ready .section-title.split-words:not(.is-visible)::after { transform: sc
 
 .about-text p { color: var(--text-dim); font-size: 16px; margin-bottom: 28px; }
 
+/* Lead line: role in accent gradient, then the promise. */
+.about-text .about-headline {
+  font-size: 22px;
+  line-height: 1.45;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: 4px 0 24px;
+}
+
+.about-headline-role {
+  display: inline-block;
+  background: var(--title-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.about-headline-pipe {
+  color: var(--border);
+  font-weight: 400;
+  margin: 0 10px;
+}
+
+.about-text .about-bio p {
+  color: var(--text-dim);
+  font-size: 16px;
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+
+.about-text .about-bio p:last-child { margin-bottom: 0; }
+
+.about-blocks { display: grid; gap: 32px; margin: 30px 0; }
+
+.about-sub {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-2);
+  margin: 0 0 14px;
+}
+
+.about-list { list-style: none; display: grid; gap: 11px; }
+
+.about-list li {
+  position: relative;
+  padding-left: 25px;
+  color: var(--text-dim);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.about-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.12);
+}
+
+.about-list--outline li::before {
+  background: none;
+  border: 1.5px solid rgba(var(--accent-rgb), 0.6);
+  box-shadow: none;
+  top: 0.5em;
+  width: 8px;
+  height: 8px;
+}
+
+.about-list strong { color: var(--text); font-weight: 600; }
+
+.about-text .about-cta {
+  margin: 0;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text-dim);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.about-text .about-cta a {
+  color: var(--accent-light);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.about-text .about-cta a:hover { color: var(--accent-2); }
+
 .skills-list { display: flex; flex-wrap: wrap; gap: 10px; }
 
 .skill-pill {

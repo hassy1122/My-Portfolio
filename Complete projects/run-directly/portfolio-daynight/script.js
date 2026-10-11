@@ -21,7 +21,7 @@
       rate: "Competitive rates — discussed per project",
       photo: "images/myimg.jpg",
       tagline: "Full-Stack JavaScript Developer with hands-on experience building responsive web and mobile applications using the MERN stack.",
-      bio: "BSCS graduate and Full-Stack JavaScript Developer with hands-on experience building responsive web and mobile applications using the MERN stack. I care about understanding how every layer of an application fits together — from database design to deployed UI. Currently preparing for advanced master's studies abroad.",
+      bio: "Great software isn't just good-looking screens. It's a reliable system underneath that grows with your business. I'm a Full-Stack JavaScript Developer specializing in the MERN stack (MongoDB, Express, React, Node.js), and I take products from first concept to live deployment, owning every layer: database design, API logic, and a polished, responsive interface.\n\nWorking with one developer who understands the whole system means fewer handoffs, fewer misunderstandings, faster delivery, and a product that holds together as it scales.",
       skills: ["JavaScript (ES6+)", "HTML5", "CSS3", "SQL", "React", "Node.js", "Express.js", "MongoDB", "MySQL", "REST APIs", "Git", "GitHub"],
     },
     projects: [
@@ -223,6 +223,11 @@
     if (merged.profile && /IELTS|band score/i.test(String(merged.profile.languages || ""))) {
       merged.profile.languages = "English, Urdu";
     }
+    /* Old bio replaced by the services-style summary — swap it once saved data
+       still carries the previous paragraph. */
+    if (merged.profile && /BSCS graduate|advanced master's studies abroad/i.test(String(merged.profile.bio || ""))) {
+      merged.profile.bio = DEFAULT_DATA.profile.bio;
+    }
     return merged;
   }
 
@@ -255,7 +260,25 @@
     setText("nav-name", p.heroName || p.name);
     setText("hero-name", p.heroName || "");
     setText("hero-tagline", p.tagline || "");
-    setText("about-bio", p.bio || "");
+    /* bio supports paragraphs: a blank line starts a new one */
+    (function () {
+      var bioEl = document.getElementById("about-bio");
+      if (!bioEl) return;
+      bioEl.innerHTML = "";
+      String(p.bio || "")
+        .split(/\n{2,}/)
+        .map(function (part) {
+          return part.trim();
+        })
+        .filter(Boolean)
+        .forEach(function (part) {
+          var para = document.createElement("p");
+          para.className = "split-words";
+          para.textContent = part;
+          bioEl.appendChild(para);
+        });
+      bioEl.removeAttribute("data-split");
+    })();
     setText("fact-name", p.name || "—");
     setText("fact-dob", p.dob ? formatDate(p.dob) : "—");
     setText("fact-location", p.location || "—");
