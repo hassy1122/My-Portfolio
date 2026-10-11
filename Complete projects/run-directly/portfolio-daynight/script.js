@@ -91,18 +91,6 @@
     ],
     certs: [
       { name: "IBM Full-Stack JavaScript Developer Professional Certificate", issuer: "IBM / Coursera (Sep 17, 2026)", link: "https://coursera.org/verify/professional-cert/8FA06GAV0238", image: "images/certificates/all-in-one.png" },
-      { name: "Introduction to Software Engineering", issuer: "IBM on Coursera (Sep 5, 2026)", link: "https://coursera.org/verify/YGODXN9PXQVC", image: "images/certificates/C1.png" },
-      { name: "Introduction to HTML, CSS, & JavaScript", issuer: "IBM on Coursera (Sep 5, 2026)", link: "https://coursera.org/verify/SA8HT45TNX", image: "images/certificates/C2.png" },
-      { name: "Getting Started with Git and GitHub", issuer: "IBM on Coursera (Sep 17, 2026)", link: "https://coursera.org/verify/KAXTHNRL7PDW", image: "images/certificates/C3.png" },
-      { name: "JavaScript Programming Essentials", issuer: "IBM on Coursera (Sep 16, 2026)", link: "https://coursera.org/verify/Y8MJE85T7N", image: "images/certificates/C4.png" },
-      { name: "Developing Front-End Apps with React", issuer: "IBM on Coursera (Sep 8, 2026)", link: "https://coursera.org/verify/R1Q90WbVyRP", image: "images/certificates/C5.png" },
-      { name: "Developing Back-End Apps with Node.js and Express", issuer: "IBM on Coursera (Sep 17, 2026)", link: "https://coursera.org/verify/32SDZLR53YAL", image: "images/certificates/C6.png" },
-      { name: "Get Started with Cloud Native, DevOps, Agile, and NoSQL", issuer: "IBM on Coursera (Sep 17, 2026)", link: "https://coursera.org/verify/BHUUY41XMQD", image: "images/certificates/C7.png" },
-      { name: "Introduction to Containers w/ Docker, Kubernetes & OpenShift", issuer: "IBM on Coursera (Sep 17, 2026)", link: "https://coursera.org/verify/GBJGGVYF19O", image: "images/certificates/C8.png" },
-      { name: "Application Development using Microservices and Serverless", issuer: "IBM on Coursera (Sep 17, 2026)", link: "https://coursera.org/verify/4GF5LE6XPHY9", image: "images/certificates/C9.png" },
-      { name: "Node.js & MongoDB: Developing Back-end Database Applications", issuer: "IBM on Coursera (Sep 9, 2026)", link: "https://coursera.org/verify/QIITJW8RC3T4", image: "images/certificates/C10.png" },
-      { name: "JavaScript Full Stack Capstone Project", issuer: "IBM on Coursera (Sep 16, 2026)", link: "https://coursera.org/verify/GNXSGXATAQLX", image: "images/certificates/C11.png" },
-      { name: "Software Developer Career Guide and Interview Preparation", issuer: "IBM on Coursera (Sep 11, 2026)", link: "https://coursera.org/verify/D5DMJQSVTA9D", image: "images/certificates/C12.png" },
       { name: "Full Stack Web Development Certification", issuer: "ICR IT Centre, Rahim Yar Khan (Sep 26, 2023)", link: "images/certificates/icr-fullstack.jpg", image: "images/certificates/icr-fullstack.jpg" },
       { name: "Full-Stack JavaScript Development (NAVTTC)", issuer: "ExD Academy · NAVTTC, Lahore (Sep 2026)", link: "", image: "" },
     ],
@@ -117,6 +105,39 @@
 
   var STORAGE_KEY = "portfolio-data-v3";
   var MIGRATION_KEY = "portfolio-data-migrated-v4";
+  /* Certificates removed from the site — also dropped from saved/local data
+     so old localStorage snapshots and site-data.js copies stay in sync. */
+  var REMOVED_CERTS = [
+    "Introduction to Software Engineering",
+    "Introduction to HTML, CSS, & JavaScript",
+    "Getting Started with Git and GitHub",
+    "JavaScript Programming Essentials",
+    "Developing Front-End Apps with React",
+    "Developing Back-End Apps with Node.js and Express",
+    "Get Started with Cloud Native, DevOps, Agile, and NoSQL",
+    "Introduction to Containers w/ Docker, Kubernetes & OpenShift",
+    "Application Development using Microservices and Serverless",
+    "Node.js & MongoDB: Developing Back-end Database Applications",
+    "JavaScript Full Stack Capstone Project",
+    "Software Developer Career Guide and Interview Preparation",
+  ];
+
+  function dropRemovedCerts(merged, hasStoredData) {
+    if (!Array.isArray(merged.certs)) return merged;
+    var before = merged.certs.length;
+    merged.certs = merged.certs.filter(function (c) {
+      var name = String(c && c.name ? c.name : "").trim().toLowerCase();
+      return REMOVED_CERTS.every(function (r) {
+        return r.toLowerCase() !== name;
+      });
+    });
+    if (hasStoredData && merged.certs.length !== before) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+      } catch (e) {}
+    }
+    return merged;
+  }
   /* Public snapshot: window.SITE_DATA from site-data.js (same folder). Visitors read this.
      Owner localStorage always wins on the owner's browser. Export from admin to publish. */
 
@@ -182,13 +203,17 @@
         merged = deepMerge(merged, window.SITE_DATA);
       }
     } catch (e) {}
+    var hasStoredData = false;
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
+        hasStoredData = true;
         merged = deepMerge(merged, JSON.parse(raw));
       }
     } catch (e) {}
     merged = applyLegacyMigrations(merged);
+    /* removed certificates must disappear even if saved data still lists them */
+    merged = dropRemovedCerts(merged, hasStoredData);
     /* empty photo falls back to default professional photo */
     if (merged.profile && !merged.profile.photo) {
       merged.profile.photo = DEFAULT_DATA.profile.photo;
