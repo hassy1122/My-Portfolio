@@ -403,13 +403,20 @@
     });
   }
 
+  var PROJECTS_VISIBLE = 3;
+  var projectsExpanded = false;
+
   function renderProjects() {
     var grid = document.getElementById("project-grid");
     if (!grid) return;
     grid.innerHTML = "";
-    (state.projects || []).forEach(function (proj, i) {
+    var projects = state.projects || [];
+    projects.forEach(function (proj, i) {
       var card = document.createElement("div");
       card.className = "project-card reveal";
+      if (i >= PROJECTS_VISIBLE && !projectsExpanded) {
+        card.className += " project-card--hidden";
+      }
       card.style.setProperty("--i", String(i));
       var tags = proj.tags || [];
       var imgs = Array.isArray(proj.images)
@@ -456,6 +463,34 @@
       });
     });
     attachTilt(".project-card");
+    syncProjectsToggle(projects.length);
+  }
+
+  /* "View more" — only the first 3 projects are shown until the visitor expands. */
+  function syncProjectsToggle(total) {
+    var btn = document.getElementById("projects-view-more");
+    if (!btn) return;
+    btn.hidden = total <= PROJECTS_VISIBLE;
+    btn.textContent = projectsExpanded ? "View less" : "View more";
+    btn.setAttribute("aria-expanded", String(projectsExpanded));
+    btn.setAttribute("aria-controls", "project-grid");
+  }
+
+  var projectsMoreBtn = document.getElementById("projects-view-more");
+  if (projectsMoreBtn) {
+    projectsMoreBtn.addEventListener("click", function () {
+      projectsExpanded = !projectsExpanded;
+      renderProjects();
+      if (!projectsExpanded && gridTopInReach()) {
+        var section = document.getElementById("work");
+        if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  }
+
+  function gridTopInReach() {
+    var grid = document.getElementById("project-grid");
+    return !grid || grid.getBoundingClientRect().top < 0;
   }
 
   function renderCerts() {

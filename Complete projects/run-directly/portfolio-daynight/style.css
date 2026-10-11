@@ -1135,6 +1135,39 @@ body:not(.admin-mode) .comment-delete-btn { display: none !important; }
   gap: 26px;
 }
 
+/* Only the first few projects are visible; the rest wait behind "View more". */
+.project-card--hidden { display: none; }
+
+.view-more-btn[hidden] { display: none; }
+
+.view-more-btn {
+  display: block;
+  margin: 28px auto 0;
+  padding: 6px 4px;
+  background: none;
+  border: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--accent-light);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
+  cursor: pointer;
+  transition: color 0.25s ease, text-underline-offset 0.25s ease;
+}
+
+.view-more-btn:hover {
+  color: var(--accent-2);
+  text-underline-offset: 7px;
+}
+
+.view-more-btn:focus-visible {
+  outline: 2px solid rgba(var(--accent-rgb), 0.6);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
 .project-card,
 .cert-card {
   background: var(--card-bg);
